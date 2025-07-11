@@ -1,37 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ayusa <ayusa@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/09 20:45:19 by ayusa             #+#    #+#             */
-/*   Updated: 2025/07/11 22:11:12 by ayusa            ###   ########.fr       */
+/*   Created: 2025/05/03 03:15:08 by ayusa             #+#    #+#             */
+/*   Updated: 2025/05/03 22:11:02 by ayusa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#include "libft.h"
 
-# include <unistd.h>
-# include <fcntl.h>
-# include <stdlib.h>
-# include <stdio.h>
-# include <string.h>
-# include <sys/types.h>
-# include <sys/stat.h>
-
-# include "./libft/libft.h"
-# include "./ft_printf/ft_printf.h"
-# include "./get_next_line/get_next_line.h"
-
-#define MAP_SIZE 1024
-
-typedef struct s_so_long
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	int		fd;
-	char	*file;
-	char	**map;
-}	t_so_long;
+	size_t				i;
+	unsigned char		*d;
+	const unsigned char	*s;
 
-#endif
+	d = (unsigned char *)dst;
+	s = (const unsigned char *)src;
+	if (d < s)
+	{
+		i = 0;
+		while (i < len)
+		{
+			d[i] = s[i];
+			i++;
+		}
+	}
+	else
+	{
+		while (len > 0)
+		{
+			len--;
+			d[len] = s[len];
+		}
+	}
+	return (dst);
+}

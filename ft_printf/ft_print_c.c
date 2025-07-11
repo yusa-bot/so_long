@@ -1,37 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   ft_print_c.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ayusa <ayusa@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/09 20:45:19 by ayusa             #+#    #+#             */
-/*   Updated: 2025/07/11 22:11:12 by ayusa            ###   ########.fr       */
+/*   Created: 2025/05/18 15:41:18 by ayusa             #+#    #+#             */
+/*   Updated: 2025/07/05 18:54:24 by ayusa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#include "ft_printf.h"
 
-# include <unistd.h>
-# include <fcntl.h>
-# include <stdlib.h>
-# include <stdio.h>
-# include <string.h>
-# include <sys/types.h>
-# include <sys/stat.h>
-
-# include "./libft/libft.h"
-# include "./ft_printf/ft_printf.h"
-# include "./get_next_line/get_next_line.h"
-
-#define MAP_SIZE 1024
-
-typedef struct s_so_long
+int	ft_print_c(char c, t_format *p)
 {
-	int		fd;
-	char	*file;
-	char	**map;
-}	t_so_long;
+	int	len;
 
-#endif
+	len = 0;
+	if (p->minus)
+		len += ft_putchar_fd(c, 1);
+	len += ft_padding_width(p->width, 1, 0);
+	if (!p->minus)
+		len += ft_putchar_fd(c, 1);
+	p->width = 0;
+	return (len);
+}

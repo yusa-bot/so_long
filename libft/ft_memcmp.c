@@ -1,37 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ayusa <ayusa@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/09 20:45:19 by ayusa             #+#    #+#             */
-/*   Updated: 2025/07/11 22:11:12 by ayusa            ###   ########.fr       */
+/*   Created: 2025/05/03 14:04:46 by ayusa             #+#    #+#             */
+/*   Updated: 2025/05/03 17:58:07 by ayusa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#include "libft.h"
 
-# include <unistd.h>
-# include <fcntl.h>
-# include <stdlib.h>
-# include <stdio.h>
-# include <string.h>
-# include <sys/types.h>
-# include <sys/stat.h>
-
-# include "./libft/libft.h"
-# include "./ft_printf/ft_printf.h"
-# include "./get_next_line/get_next_line.h"
-
-#define MAP_SIZE 1024
-
-typedef struct s_so_long
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	int		fd;
-	char	*file;
-	char	**map;
-}	t_so_long;
+	size_t			i;
+	unsigned char	*s01;
+	unsigned char	*s02;
 
-#endif
+	i = 0;
+	s01 = (unsigned char *)s1;
+	s02 = (unsigned char *)s2;
+	while (i < n)
+	{
+		if (s01[i] != s02[i])
+			return (s01[i] - s02[i]);
+		i++;
+	}
+	return (0);
+}

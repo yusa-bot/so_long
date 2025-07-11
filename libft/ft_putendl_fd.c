@@ -1,37 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ayusa <ayusa@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/09 20:45:19 by ayusa             #+#    #+#             */
-/*   Updated: 2025/07/11 22:11:12 by ayusa            ###   ########.fr       */
+/*   Created: 2025/05/05 22:37:35 by ayusa             #+#    #+#             */
+/*   Updated: 2025/07/05 17:51:19 by ayusa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#include "libft.h"
 
-# include <unistd.h>
-# include <fcntl.h>
-# include <stdlib.h>
-# include <stdio.h>
-# include <string.h>
-# include <sys/types.h>
-# include <sys/stat.h>
-
-# include "./libft/libft.h"
-# include "./ft_printf/ft_printf.h"
-# include "./get_next_line/get_next_line.h"
-
-#define MAP_SIZE 1024
-
-typedef struct s_so_long
+int	ft_putendl_fd(char *s, int fd)
 {
-	int		fd;
-	char	*file;
-	char	**map;
-}	t_so_long;
+	int	len;
 
-#endif
+	len = 0;
+	if (!s)
+		return (len);
+	len += write(fd, s, ft_strlen(s));
+	len += write(fd, "\n", 1);
+	return (len);
+}

@@ -1,37 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ayusa <ayusa@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/09 20:45:19 by ayusa             #+#    #+#             */
-/*   Updated: 2025/07/11 22:11:12 by ayusa            ###   ########.fr       */
+/*   Created: 2025/05/03 14:27:27 by ayusa             #+#    #+#             */
+/*   Updated: 2025/05/03 18:14:00 by ayusa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#include "libft.h"
 
-# include <unistd.h>
-# include <fcntl.h>
-# include <stdlib.h>
-# include <stdio.h>
-# include <string.h>
-# include <sys/types.h>
-# include <sys/stat.h>
-
-# include "./libft/libft.h"
-# include "./ft_printf/ft_printf.h"
-# include "./get_next_line/get_next_line.h"
-
-#define MAP_SIZE 1024
-
-typedef struct s_so_long
+char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
-	int		fd;
-	char	*file;
-	char	**map;
-}	t_so_long;
+	size_t	i;
+	size_t	j;
 
-#endif
+	if (!*needle)
+		return ((char *)haystack);
+	i = 0;
+	while (haystack[i] && i < len)
+	{
+		j = 0;
+		while (needle[j] && haystack[i + j] && i + j < len
+			&& haystack[i + j] == needle[j]
+		)
+			j++;
+		if (needle[j] == '\0')
+			return ((char *)(haystack + i));
+		i++;
+	}
+	return (NULL);
+}
