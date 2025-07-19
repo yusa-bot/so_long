@@ -6,7 +6,7 @@
 /*   By: ayusa <ayusa@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 13:12:03 by ayusa             #+#    #+#             */
-/*   Updated: 2025/07/11 21:13:03 by ayusa            ###   ########.fr       */
+/*   Updated: 2025/07/19 14:53:14 by ayusa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,10 +129,10 @@ char	*get_next_line(int fd)
 
 // 	while (1)
 // 	{
-// 		line = get_next_line(fd);
+// 		line = get_next_line(0);
 // 		if (!line)
 // 			break;
-// 		printf(">>> %s", line);
+// 		printf(">>>%s", line);
 // 		free(line);
 // 	}
 // 	close(fd);

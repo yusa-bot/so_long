@@ -1,41 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   util.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ayusa <ayusa@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/09 20:45:21 by ayusa             #+#    #+#             */
-/*   Updated: 2025/07/19 18:55:49 by ayusa            ###   ########.fr       */
+/*   Created: 2025/07/12 18:56:09 by ayusa             #+#    #+#             */
+/*   Updated: 2025/07/19 18:11:25 by ayusa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	main(int ac, char **av)
+void	free_map(char **map)
 {
-	t_so_long	dt;
+	int	i;
 
-	dt.fd = -1;
-	dt.map = NULL;
-	if (ac != 2)
-		error_exit(&dt, "Usage: ./so_long <map_file.ber>");
-	dt.file = av[1];
-	read_map(&dt);
+	i = 0;
+	if (!map)
+		return ;
+	while (map[i])
+		free(map[i++]);
+	free(map);
+}
 
+void	error_exit(t_so_long *dt, char *msg)
+{
+	int	len;
 
-	
-	size_t i = 0;
-	while (dt.map[i])
-	{
-		size_t j = 0;
-		while (dt.map[i][j])
-		{
-			//printf("i: %zu, j: %zu\n", i, j);
-			printf("%c", dt.map[i][j++]);
+	if (dt->fd >= 0)
+		close(dt->fd);
 
-		}
-		i++;
-	}
-	free_map(dt.map);
+	if (dt->map)
+		free_map(dt->map);
+
+	len = ft_strlen(msg);
+	write(2, "Error\n", 6);
+	write(2, msg, len);
+	write(2, "\n", 1);
+	exit(1);
 }

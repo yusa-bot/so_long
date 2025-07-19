@@ -6,13 +6,13 @@
 #    By: ayusa <ayusa@student.42tokyo.jp>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/09 20:45:22 by ayusa             #+#    #+#              #
-#    Updated: 2025/07/11 21:53:36 by ayusa            ###   ########.fr        #
+#    Updated: 2025/07/19 18:01:50 by ayusa            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = so_long
 
-SRCS = main.c
+SRCS = main.c av_to_map.c util.c check_path.c
 OBJS = $(SRCS:.c=.o)
 
 %.o: %.c
