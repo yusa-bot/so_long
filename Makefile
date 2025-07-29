@@ -6,7 +6,7 @@
 #    By: ayusa <ayusa@student.42tokyo.jp>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/09 20:45:22 by ayusa             #+#    #+#              #
-#    Updated: 2025/07/19 18:01:50 by ayusa            ###   ########.fr        #
+#    Updated: 2025/07/29 17:15:17 by ayusa            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,8 +15,12 @@ NAME = so_long
 SRCS = main.c av_to_map.c util.c check_path.c
 OBJS = $(SRCS:.c=.o)
 
-%.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+CC = cc
+CFLAGS = -Wall -Wextra -Werror
+RM = rm -f
+
+%.o: %.
+	$(CC) $(CFLAGS) -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
 
 LIBFT_DIR = libft
 FT_PRINTF_DIR = ft_printf
@@ -26,14 +30,21 @@ LIBFT = $(LIBFT_DIR)/libft.a
 FT_PRINTF = $(FT_PRINTF_DIR)/ft_printf.a
 GET_NEXT_LINE = $(GET_NEXT_LINE_DIR)/get_next_line.a
 
-CC = cc
-CFLAGS = -Wall -Wextra -Werror
-RM = rm -f
-
 all: $(NAME)
 
 $(NAME): $(LIBFT) $(FT_PRINTF) $(GET_NEXT_LINE) $(OBJS)
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(GET_NEXT_LINE) $(LIBFT) $(FT_PRINTF)
+	@echo "\[\033[4;35m                                                            \n\
+	  ▄████████  ▄██████▄          ▄█          ▄██████▄  ███▄▄▄▄      ▄██████▄      \n\
+	 ███    ███ ███    ███        ███         ███    ███ ███▀▀▀██▄   ███    ███     \n\
+	 ███    █▀  ███    ███        ███         ███    ███ ███   ███   ███    █▀      \n\
+	 ███        ███    ███        ███         ███    ███ ███   ███  ▄███            \n\
+	███████████ ███    ███        ███         ███    ███ ███   ███ ▀▀███ ████▄      \n\
+	        ███ ███    ███        ███         ███    ███ ███   ███   ███    ███     \n\
+	  ▄█    ███ ███    ███        ███▌     ▄  ███    ███ ███   ███   ███    ███     \n\
+	▄████████▀   ▀██████▀  █████  ███████▄▄██  ▀██████▀   ▀█   █▀    ████████▀      \n\
+                                                                       	 		\033[0m"
+	@echo "                                \033[44mBy: ayusa"
 
 $(GET_NEXT_LINE): $(LIBFT)
 	make -C $(GET_NEXT_LINE_DIR)
