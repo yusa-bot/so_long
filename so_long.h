@@ -6,7 +6,7 @@
 /*   By: ayusa <ayusa@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 20:45:19 by ayusa             #+#    #+#             */
-/*   Updated: 2025/07/29 20:20:30 by ayusa            ###   ########.fr       */
+/*   Updated: 2025/07/29 21:12:03 by ayusa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,6 @@ char	**read_map(t_so_long *dt);
 void	check_path(t_so_long *dt);
 
 void	so_long(t_so_long *dt);
+void	display_map(t_so_long *dt);
 
 #endif

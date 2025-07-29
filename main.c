@@ -6,7 +6,7 @@
 /*   By: ayusa <ayusa@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 20:45:21 by ayusa             #+#    #+#             */
-/*   Updated: 2025/07/29 19:13:31 by ayusa            ###   ########.fr       */
+/*   Updated: 2025/07/29 21:14:21 by ayusa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,25 +23,7 @@ int	main(int ac, char **av)
 	dt.file = av[1];
 	read_map(&dt);
 
-
-
-	size_t i = 0;
-	while (dt.map[i])
-	{
-		size_t j = 0;
-		while (dt.map[i][j])
-		{
-			//printf("i: %zu, j: %zu\n", i, j);
-			printf("%c", dt.map[i][j++]);
-
-		}
-		i++;
-	}
-
 	so_long(&dt);
-
-
-
 
 
 	free_map(dt.map);
