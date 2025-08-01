@@ -6,7 +6,7 @@
 /*   By: ayusa <ayusa@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 18:55:35 by ayusa             #+#    #+#             */
-/*   Updated: 2025/07/19 18:13:55 by ayusa            ###   ########.fr       */
+/*   Updated: 2025/08/01 19:59:36 by ayusa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,11 @@ void	map_dup_p_e(t_so_long *dt)
 		while (dt->map[i][j])
 		{
 			if (dt->map[i][j] == 'P')
+			{
+				dt->player_x = j;
+				dt->player_y = i;
 				p++;
+			}
 			else if (dt->map[i][j] == 'E')
 				e++;
 			j++;
@@ -38,6 +42,7 @@ void	map_dup_p_e(t_so_long *dt)
 	if (p != 1 || e != 1)
 		error_exit(dt, "The number of 'P' and 'E' is one");
 }
+
 
 void	map_surr_wall(t_so_long *dt)
 {
@@ -137,7 +142,6 @@ char	**read_map(t_so_long *dt)
 	dt->fd = open(dt->file, O_RDONLY);
 	if (dt->fd < 0)
 		error_exit(dt, "can't open file");
-
 	dt->map = read_file_all(dt);
 	if (!dt->map)
 		error_exit(dt, "Failed to read file");
