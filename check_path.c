@@ -6,7 +6,7 @@
 /*   By: ayusa <ayusa@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/19 17:24:31 by ayusa             #+#    #+#             */
-/*   Updated: 2025/07/19 18:54:14 by ayusa            ###   ########.fr       */
+/*   Updated: 2025/08/02 15:51:02 by ayusa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,15 @@ char	**map_copy(t_so_long *dt)
 	char	**copy;
 	size_t	i;
 
-	copy = malloc(sizeof(char *) * dt->map_h);
+	copy = malloc(sizeof(char *) * (dt->map_h + 1));
 	if (!copy)
 		error_exit(dt, "Failed to copy map");
 	i = 0;
-	while (i <= dt->map_h - 1)
+	while (i < dt->map_h)
 	{
 		copy[i] = ft_strdup(dt->map[i]);
+		if (!copy[i])
+			error_exit(dt, "strdup failed");
 		i++;
 	}
 	copy[i] = NULL;
