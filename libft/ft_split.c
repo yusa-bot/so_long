@@ -6,13 +6,13 @@
 /*   By: ayusa <ayusa@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 22:28:52 by ayusa             #+#    #+#             */
-/*   Updated: 2025/07/08 22:41:38 by ayusa            ###   ########.fr       */
+/*   Updated: 2025/08/02 18:11:13 by ayusa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	count_words(const char *str)
+static int	count_words(const char *str)
 {
 	int	i;
 	int	count;
@@ -32,7 +32,7 @@ int	count_words(const char *str)
 	return (count);
 }
 
-void	copy_words(char *tab, const char *str, int start, int end)
+static void	copy_words(char *tab, const char *str, int start, int end)
 {
 	int	j;
 
@@ -42,7 +42,7 @@ void	copy_words(char *tab, const char *str, int start, int end)
 	tab[j] = '\0';
 }
 
-int	find_next_word(const char *str, int *start, int *end)
+static int	find_next_word(const char *str, int *start, int *end)
 {
 	int	i;
 
@@ -58,7 +58,7 @@ int	find_next_word(const char *str, int *start, int *end)
 }
 
 //start, endをstr全体の変数として使っている。
-int	ft_fill_words(char **tab, const char *str)
+static int	ft_fill_words(char **tab, const char *str)
 {
 	int	i;
 	int	word;

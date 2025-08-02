@@ -6,7 +6,7 @@
 /*   By: ayusa <ayusa@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 18:55:35 by ayusa             #+#    #+#             */
-/*   Updated: 2025/08/01 19:59:36 by ayusa            ###   ########.fr       */
+/*   Updated: 2025/08/02 18:41:51 by ayusa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,7 @@ void	map_surr_wall(t_so_long *dt)
 	if (!dt->map || dt->map_w == 0 || dt->map_h == 0)
         error_exit(dt, "Invalid map size");
 	i = 0;
-	//printf("%c\n", dt->map[0][34]);//
-	while (i <= dt->map_w - 3)
+	while (i <= dt->map_w - 1)
 	{
 		if (dt->map[0][i] != '1' || dt->map[dt->map_h - 1][i] != '1')
 			error_exit(dt, "Top or bottom wall is not closed");
@@ -61,7 +60,7 @@ void	map_surr_wall(t_so_long *dt)
 	i = 0;
 	while (i <= dt->map_h - 1)
 	{
-		if (dt->map[i][0] != '1' || dt->map[i][dt->map_w - 3] != '1')
+		if (dt->map[i][0] != '1' || dt->map[i][dt->map_w - 1] != '1')
 			error_exit(dt, "Left or right wall is not closed");
 		i++;
 	}
@@ -75,10 +74,7 @@ void	map_is_rectangular(t_so_long *dt)
 	i = 0;
 	while (i <= dt->map_h - 1)
 	{
-		len = ft_strlen(dt->map[i]) + 1;//full
-		//printf("len: %zu, map_w: %zu\n", len, dt->map_w);//
-		if (i == dt->map_h - 1)//last line add (new line)
-			len++;
+		len = ft_strlen(dt->map[i]);
 		if (len != dt->map_w)
 			error_exit(dt, "The map must be rectangular");
 		i++;
@@ -98,17 +94,20 @@ void	line_to_map(t_so_long *dt, char *line, size_t i)
 {
 	size_t	j;
 
-	dt->map[i] = malloc(dt->map_w);
+	dt->map[i] = malloc(dt->map_w + 1);
 	if (!dt->map[i])
+	{
 		error_exit(dt, "can't malloc map line");
+		free(line);
+	}
 	dt->map[i][dt->map_w] = '\0';
 	j = 0;
 	while (line[j] != '\0')
 	{
-		dt->map[i][j] = line[j];//line + "\n"
+		dt->map[i][j] = line[j];
 		j++;
 	}
-	line[j] = '\0';
+	dt->map[i][j] = '\0';
 }
 
 char	**read_file_all(t_so_long *dt)
@@ -119,15 +118,17 @@ char	**read_file_all(t_so_long *dt)
 	dt->map = malloc(sizeof(char *) * MAP_SIZE);
 	if (!dt->map)
 		error_exit(dt, "can't malloc map");
+
 	i = 0;
 	while (1)
 	{
-		line = get_next_line(dt->fd);
+		line = get_next_line(dt->fd);//改行無しにした。
 		if (!line)
 			break;
-		//printf("i: %zu, line: %s\n", i, line);//
+
 		if (i == 0)
-			dt->map_w = ft_strlen(line) + 1;//line + "\n"
+			dt->map_w = ft_strlen(line);//純文。
+
 		line_to_map(dt, line, i);
 		free(line);
 		i++;
@@ -142,10 +143,14 @@ char	**read_map(t_so_long *dt)
 	dt->fd = open(dt->file, O_RDONLY);
 	if (dt->fd < 0)
 		error_exit(dt, "can't open file");
+
 	dt->map = read_file_all(dt);
 	if (!dt->map)
 		error_exit(dt, "Failed to read file");
+
 	close(dt->fd);
+
 	valid_map(dt);
+
 	return (dt->map);
 }

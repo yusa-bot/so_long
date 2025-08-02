@@ -6,7 +6,7 @@
 /*   By: ayusa <ayusa@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 18:35:57 by ayusa             #+#    #+#             */
-/*   Updated: 2025/08/01 20:03:32 by ayusa            ###   ########.fr       */
+/*   Updated: 2025/08/02 19:34:27 by ayusa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	move_player(t_so_long *dt, int dx, int dy)
 int	handle_key(int keycode, t_so_long *dt)
 {
 	if (keycode == 65307)
-		exit(0);//freeも。
+		free_exit(dt);
 	else if (keycode == 'w' || keycode == 119)
 		move_player(dt, 0, -1);
 	else if (keycode == 's' || keycode == 115)
@@ -60,8 +60,9 @@ int	handle_key(int keycode, t_so_long *dt)
 	return (0);
 }
 
-int	handle_exit(t_so_long *dt)
+int	handle_exit(void *param)
 {
+	t_so_long *dt = (t_so_long *)param;
 	free_exit(dt);
 	return (0);
 }

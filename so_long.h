@@ -6,7 +6,7 @@
 /*   By: ayusa <ayusa@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 20:45:19 by ayusa             #+#    #+#             */
-/*   Updated: 2025/08/01 20:03:46 by ayusa            ###   ########.fr       */
+/*   Updated: 2025/08/02 19:19:35 by ayusa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,6 @@ void	display_map(t_so_long *dt);
 
 int		handle_key(int keycode, t_so_long *dt);
 void	render_map(t_so_long *dt);
-int		handle_exit(t_so_long *dt);
+int		handle_exit(void *param);
 
 #endif

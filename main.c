@@ -6,7 +6,7 @@
 /*   By: ayusa <ayusa@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 20:45:21 by ayusa             #+#    #+#             */
-/*   Updated: 2025/08/02 16:21:44 by ayusa            ###   ########.fr       */
+/*   Updated: 2025/08/02 19:42:36 by ayusa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,5 @@ int	main(int ac, char **av)
 	dt.file = av[1];
 	read_map(&dt);
 	so_long(&dt);
-	free_map(dt.map);
 	return (0);
 }
