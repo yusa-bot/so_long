@@ -6,7 +6,7 @@
 /*   By: ayusa <ayusa@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 20:45:19 by ayusa             #+#    #+#             */
-/*   Updated: 2025/08/02 19:19:35 by ayusa            ###   ########.fr       */
+/*   Updated: 2025/08/05 22:20:45 by ayusa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 # include "./ft_printf/ft_printf.h"
 # include "./get_next_line/get_next_line.h"
 
-#define MAP_SIZE 1024
+# define MAP_SIZE 1024
 
 typedef struct s_so_long
 {
@@ -60,7 +60,8 @@ void	error_exit(t_so_long *dt, char *msg);
 void	free_exit(t_so_long *dt);
 
 void	free_map(char **map);
-char	**read_map(t_so_long *dt);
+void	read_map(t_so_long *dt);
+void	valid_map(t_so_long *dt);
 void	check_path(t_so_long *dt);
 
 void	so_long(t_so_long *dt);

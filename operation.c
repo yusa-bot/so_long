@@ -6,24 +6,32 @@
 /*   By: ayusa <ayusa@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 18:35:57 by ayusa             #+#    #+#             */
-/*   Updated: 2025/08/02 19:34:27 by ayusa            ###   ########.fr       */
+/*   Updated: 2025/08/05 22:15:07 by ayusa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-// mlx_hook : 上下左右の移動
-// WASD or 矢印キー : Pを移動
-// 1 OK /0.C.E NG
+void	reset_player(t_so_long *dt)
+{
+	dt->map[dt->player_y][dt->player_x] = '0';
+	dt->map[new_y][new_x] = 'P';
+	dt->player_x = new_x;
+	dt->player_y = new_y;
+	dt->move_count++;
+}
 
 void	move_player(t_so_long *dt, int dx, int dy)
 {
-	int	new_x = dt->player_x + dx;
-	int	new_y = dt->player_y + dy;
-	char	next = dt->map[new_y][new_x];
+	int		new_x;
+	int		new_y;
+	char	next;
 
-	if (next == '1') // 壁は移動不可
-		return;
+	new_x = dt->player_x + dx;
+	new_y = dt->player_y + dy;
+	next = dt->map[new_y][new_x];
+	if (next == '1')
+		return ;
 	if (next == 'C')
 		dt->collect_count--;
 	if (next == 'E')
@@ -34,14 +42,9 @@ void	move_player(t_so_long *dt, int dx, int dy)
 			exit(0);
 		}
 		else
-			return; // アイテム未取得なら無視
+			return ;
 	}
-	dt->map[dt->player_y][dt->player_x] = '0';
-	dt->map[new_y][new_x] = 'P';
-	dt->player_x = new_x;
-	dt->player_y = new_y;
-	dt->move_count++;
-	ft_printf("Move count: %d\n", dt->move_count);
+	reset_player(dt);
 	render_map(dt);
 }
 
@@ -62,7 +65,9 @@ int	handle_key(int keycode, t_so_long *dt)
 
 int	handle_exit(void *param)
 {
-	t_so_long *dt = (t_so_long *)param;
+	t_so_long	*dt;
+
+	dt = (t_so_long *)param;
 	free_exit(dt);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: ayusa <ayusa@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 13:12:03 by ayusa             #+#    #+#             */
-/*   Updated: 2025/08/02 18:27:13 by ayusa            ###   ########.fr       */
+/*   Updated: 2025/08/05 22:21:11 by ayusa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,6 @@ char	*read_until_nl_in_buf(int fd, char *last_str)
 		read_bytes = read(fd, buf, BUFFER_SIZE);
 		if (read_bytes == -1)
 			return (free(buf), free(last_str), NULL);
-
 		buf[read_bytes] = '\0';
 		last_str = to_new_last_str(last_str, buf);
 		if (!last_str)
@@ -105,15 +104,12 @@ char	*get_next_line(int fd)
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-
 	last_str = read_until_nl_in_buf(fd, last_str);
 	if (!last_str)
 		return (NULL);
-
 	line = get_nl_line(last_str);
 	if (!line)
 		return (free(last_str), NULL);
-
 	last_str = new_last_str(last_str);
 	return (line);
 }
