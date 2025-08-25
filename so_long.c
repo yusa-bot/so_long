@@ -6,7 +6,7 @@
 /*   By: ayusa <ayusa@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 14:00:45 by ayusa             #+#    #+#             */
-/*   Updated: 2025/08/02 19:15:25 by ayusa            ###   ########.fr       */
+/*   Updated: 2025/08/25 23:19:10 by ayusa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	so_long(t_so_long *dt)
 	dt->move_count = 0;
 	dt->t_size = 50;
 	display_map(dt);
-	mlx_hook(dt->win, 2, 1L << 0, handle_key, dt);
-	mlx_hook(dt->win, 17, 0, handle_exit, dt);
+	mlx_hook(dt->win, 2, 1L << 0, handle_key, dt);//keyboard
+	mlx_hook(dt->win, 17, 0, handle_exit, dt);//x
 	mlx_loop(dt->mlx);
 }

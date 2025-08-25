@@ -6,7 +6,7 @@
 /*   By: ayusa <ayusa@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 18:35:57 by ayusa             #+#    #+#             */
-/*   Updated: 2025/08/25 15:02:54 by ayusa            ###   ########.fr       */
+/*   Updated: 2025/08/25 23:27:18 by ayusa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	move_player(t_so_long *dt, int dx, int dy)
 		if (dt->collect_count == 0)
 		{
 			ft_printf("Game Clear!\n");
-			exit(0);
+			free_exit(dt);
 		}
 		else
 			return ;
@@ -49,9 +49,12 @@ void	move_player(t_so_long *dt, int dx, int dy)
 	render_map(dt);
 }
 
-int	handle_key(int keycode, t_so_long *dt)
+int	handle_key(int keycode, void *param)
 {
-	if (keycode == 65307)
+	t_so_long *dt;
+
+	dt = (t_so_long *)param;
+	if (keycode == 65307)//esc
 		free_exit(dt);
 	else if (keycode == 'w' || keycode == 119)
 		move_player(dt, 0, -1);
@@ -68,6 +71,7 @@ int	handle_exit(void *param)
 {
 	t_so_long	*dt;
 
+	printf("handle_exit called\n");
 	dt = (t_so_long *)param;
 	free_exit(dt);
 	return (0);

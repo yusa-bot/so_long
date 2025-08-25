@@ -6,7 +6,7 @@
 /*   By: ayusa <ayusa@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 20:45:19 by ayusa             #+#    #+#             */
-/*   Updated: 2025/08/25 16:25:56 by ayusa            ###   ########.fr       */
+/*   Updated: 2025/08/25 23:27:34 by ayusa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ typedef struct s_so_long
 	int		map_i_w;
 
 	void	*mlx;
-	void	*img;
 	void	*win;
 
 	void	*img_1;
@@ -49,7 +48,6 @@ typedef struct s_so_long
 	void	*img_e;
 
 	int		t_size;
-
 	int		player_x;
 	int		player_y;
 	int		collect_count;
@@ -67,7 +65,7 @@ void	check_path(t_so_long *dt);
 void	so_long(t_so_long *dt);
 void	display_map(t_so_long *dt);
 
-int		handle_key(int keycode, t_so_long *dt);
+int		handle_key(int keycode, void *param);
 void	render_map(t_so_long *dt);
 int		handle_exit(void *param);
 

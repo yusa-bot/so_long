@@ -6,14 +6,14 @@
 #    By: ayusa <ayusa@student.42tokyo.jp>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/09 20:45:22 by ayusa             #+#    #+#              #
-#    Updated: 2025/08/25 16:40:47 by ayusa            ###   ########.fr        #
+#    Updated: 2025/08/25 21:52:50 by ayusa            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = so_long
 
 SRCS = main.c so_long_util.c check_path.c so_long.c display_map.c operation.c \
-	read_map.c valid_map.c
+		read_map.c valid_map.c
 OBJS = $(SRCS:.c=.o)
 
 CC = cc
@@ -31,28 +31,28 @@ MLX_INC = $(MLX_DIR)
 LIBFT_DIR = libft
 FT_PRINTF_DIR = ft_printf
 GET_NEXT_LINE_DIR = get_next_line
-# MLX_DIR is defined above (overridable)
 
 LIBFT = $(LIBFT_DIR)/libft.a
 FT_PRINTF = $(FT_PRINTF_DIR)/ft_printf.a
 GET_NEXT_LINE = $(GET_NEXT_LINE_DIR)/get_next_line.a
-LIBS = -L$(MLX_DIR) -lmlx -L/opt/X11/lib -lXext -lX11 -lm
+LIBS = -L$(MLX_DIR) -lmlx -lXext -lX11 -lm
 
 
 all: $(NAME)
 
+
 $(NAME): $(LIBFT) $(FT_PRINTF) $(GET_NEXT_LINE) $(OBJS)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(GET_NEXT_LINE) $(FT_PRINTF) $(LIBFT) $(LIBS)
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(GET_NEXT_LINE) $(FT_PRINTF) $(LIBS) $(LIBFT)
 	@echo "\[\033[4;35m                                                            \n\
-	  ▄████████  ▄██████▄          ▄█         x ▄██████▄  ███▄▄▄▄      ▄██████▄      \n\
+	  ▄████████  ▄██████▄          ▄█          ▄██████▄  ███▄▄▄▄      ▄██████▄      \n\
 	 ███    ███ ███    ███        ███         ███    ███ ███▀▀▀██▄   ███    ███     \n\
 	 ███    █▀  ███    ███        ███         ███    ███ ███   ███   ███    █▀      \n\
 	 ███        ███    ███        ███         ███    ███ ███   ███  ▄███            \n\
 	███████████ ███    ███        ███         ███    ███ ███   ███ ▀▀███ ████▄      \n\
-	        ███ ███    ███        ███         ███    ███ ███   ███   ███    ███     \n\
+		███ ███    ███        ███         ███    ███ ███   ███   ███    ███     \n\
 	  ▄█    ███ ███    ███        ███▌     ▄  ███    ███ ███   ███   ███    ███     \n\
 	▄████████▀   ▀██████▀  █████  ███████▄▄██  ▀██████▀   ▀█   █▀    ████████▀      \n\
-                                                                       	 		\033[0m"
+																				\033[0m"
 	@echo "                                \033[44mBy: ayusa"
 
 $(GET_NEXT_LINE): $(LIBFT)
