@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   util.c                                             :+:      :+:    :+:   */
+/*   so_long_util.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ayusa <ayusa@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 18:56:09 by ayusa             #+#    #+#             */
-/*   Updated: 2025/08/05 21:19:24 by ayusa            ###   ########.fr       */
+/*   Updated: 2025/08/25 16:29:12 by ayusa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ void	free_images(t_so_long *dt)
 
 void	free_exit(t_so_long *dt)
 {
-	free_images(dt);
+	if (dt->img_0)
+		free_images(dt);
 	if (dt->mlx && dt->win)
 		mlx_destroy_window(dt->mlx, dt->win);
 	if (dt->fd >= 0)
@@ -64,7 +65,8 @@ void	error_exit(t_so_long *dt, char *msg)
 {
 	int	len;
 
-	free_images(dt);
+	if (dt->img_0)
+		free_images(dt);
 	if (dt->mlx && dt->win)
 		mlx_destroy_window(dt->mlx, dt->win);
 	if (dt->fd >= 0)

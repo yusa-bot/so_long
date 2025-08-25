@@ -6,7 +6,7 @@
 /*   By: ayusa <ayusa@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 18:55:35 by ayusa             #+#    #+#             */
-/*   Updated: 2025/08/05 22:15:56 by ayusa            ###   ########.fr       */
+/*   Updated: 2025/08/25 16:07:46 by ayusa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	read_file_all(t_so_long *dt)
 
 void	read_map(t_so_long *dt)
 {
-	dt->fd = open(dt->file, O_RDONLY);
+    dt->fd = open(dt->file, O_RDONLY);
 	if (dt->fd < 0)
 		error_exit(dt, "can't open file");
 	read_file_all(dt);

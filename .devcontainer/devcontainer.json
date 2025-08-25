@@ -1,0 +1,16 @@
+{
+  "name": "linux-c-dev",
+  "build": { "dockerfile": "Dockerfile" },
+  "remoteUser": "vscode",
+  "settings": {
+    "terminal.integrated.defaultProfile.linux": "bash"
+  },
+  "extensions": [
+    "ms-vscode.cpptools",
+    "ms-vscode.cpptools-extension-pack"
+  ],
+  "mounts": [
+    "source=${localWorkspaceFolder},target=/work,type=bind,consistency=cached"
+  ],
+  "workspaceFolder": "/work"
+}

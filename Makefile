@@ -6,32 +6,37 @@
 #    By: ayusa <ayusa@student.42tokyo.jp>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/09 20:45:22 by ayusa             #+#    #+#              #
-#    Updated: 2025/08/05 22:16:49 by ayusa            ###   ########.fr        #
+#    Updated: 2025/08/25 16:40:47 by ayusa            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = so_long
 
 SRCS = main.c so_long_util.c check_path.c so_long.c display_map.c operation.c \
-	   read_map.c valid_map.c
+	read_map.c valid_map.c
 OBJS = $(SRCS:.c=.o)
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 RM = rm -f
 
-%.o: %.
-	$(CC) $(CFLAGS) -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
+# Allow overriding MLX_DIR from the environment, but default to the bundled dir
+MLX_DIR ?= ./minilibx-linux
+MLX_INC = $(MLX_DIR)
+
+# compile .c -> .o
+%.o: %.c
+	$(CC) $(CFLAGS) -I$(MLX_INC) -c $< -o $@
 
 LIBFT_DIR = libft
 FT_PRINTF_DIR = ft_printf
 GET_NEXT_LINE_DIR = get_next_line
-MLX_DIR = ./minilibx-linux
+# MLX_DIR is defined above (overridable)
 
 LIBFT = $(LIBFT_DIR)/libft.a
 FT_PRINTF = $(FT_PRINTF_DIR)/ft_printf.a
 GET_NEXT_LINE = $(GET_NEXT_LINE_DIR)/get_next_line.a
-LIBS = -L$(MLX_DIR) -lmlx -lXext -lX11 -lm
+LIBS = -L$(MLX_DIR) -lmlx -L/opt/X11/lib -lXext -lX11 -lm
 
 
 all: $(NAME)
@@ -39,7 +44,7 @@ all: $(NAME)
 $(NAME): $(LIBFT) $(FT_PRINTF) $(GET_NEXT_LINE) $(OBJS)
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(GET_NEXT_LINE) $(FT_PRINTF) $(LIBFT) $(LIBS)
 	@echo "\[\033[4;35m                                                            \n\
-	  ▄████████  ▄██████▄          ▄█          ▄██████▄  ███▄▄▄▄      ▄██████▄      \n\
+	  ▄████████  ▄██████▄          ▄█         x ▄██████▄  ███▄▄▄▄      ▄██████▄      \n\
 	 ███    ███ ███    ███        ███         ███    ███ ███▀▀▀██▄   ███    ███     \n\
 	 ███    █▀  ███    ███        ███         ███    ███ ███   ███   ███    █▀      \n\
 	 ███        ███    ███        ███         ███    ███ ███   ███  ▄███            \n\

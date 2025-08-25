@@ -6,7 +6,7 @@
 /*   By: ayusa <ayusa@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 21:10:36 by ayusa             #+#    #+#             */
-/*   Updated: 2025/08/05 22:07:46 by ayusa            ###   ########.fr       */
+/*   Updated: 2025/08/25 16:18:24 by ayusa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void	render_map(t_so_long *dt)
 		}
 		y++;
 	}
+	printf("%p\n", dt->img_0);
 }
 
 void	load_images(t_so_long *dt)

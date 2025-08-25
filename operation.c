@@ -6,19 +6,20 @@
 /*   By: ayusa <ayusa@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 18:35:57 by ayusa             #+#    #+#             */
-/*   Updated: 2025/08/05 22:15:07 by ayusa            ###   ########.fr       */
+/*   Updated: 2025/08/25 15:02:54 by ayusa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	reset_player(t_so_long *dt)
+void	reset_player(t_so_long *dt, int new_x, int new_y)
 {
 	dt->map[dt->player_y][dt->player_x] = '0';
 	dt->map[new_y][new_x] = 'P';
 	dt->player_x = new_x;
 	dt->player_y = new_y;
 	dt->move_count++;
+	ft_printf("Move: %d\n", dt->move_count);
 }
 
 void	move_player(t_so_long *dt, int dx, int dy)
@@ -44,7 +45,7 @@ void	move_player(t_so_long *dt, int dx, int dy)
 		else
 			return ;
 	}
-	reset_player(dt);
+	reset_player(dt, new_x, new_y);
 	render_map(dt);
 }
 

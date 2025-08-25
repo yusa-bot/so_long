@@ -6,7 +6,7 @@
 /*   By: ayusa <ayusa@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/19 17:24:31 by ayusa             #+#    #+#             */
-/*   Updated: 2025/08/05 21:42:06 by ayusa            ###   ########.fr       */
+/*   Updated: 2025/08/25 16:32:36 by ayusa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,9 +74,7 @@ void	check_path(t_so_long *dt)
 
 	copy_map = map_copy(dt);
 	find_player(dt, &x, &y);
-	printf("Starting DFS from player position: (%zu, %zu)\n", x, y);
 	dfs(copy_map, x, y);
-	printf("DFS completed\n");
 	x = 0;
 	while (x <= dt->map_h - 1)
 	{

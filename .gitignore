@@ -1,0 +1,7 @@
+./minilibx-linux
+./.devcontainer/devcontainer.json
+./.devcontainer/Dockerfile
+./.vscode
+
+**/*.o
+a.out
