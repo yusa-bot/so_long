@@ -6,24 +6,40 @@
 /*   By: ayusa <ayusa@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 21:10:36 by ayusa             #+#    #+#             */
-/*   Updated: 2025/08/25 16:18:24 by ayusa            ###   ########.fr       */
+/*   Updated: 2025/08/26 02:49:49 by ayusa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	put_image(t_so_long *dt, void *img, int x, int y)
+void	put_image(t_so_long *dt, int x, int y)
 {
-	mlx_put_image_to_window(
-		dt->mlx, dt->win, img,
-		x * dt->t_size, y * dt->t_size);
+	if (dt->map[y][x] == '1')
+		mlx_put_image_to_window(
+			dt->mlx, dt->win, dt->img_1,
+			x * dt->t_size, y * dt->t_size);
+	else if (dt->map[y][x] == '0')
+		mlx_put_image_to_window(
+			dt->mlx, dt->win, dt->img_0,
+			x * dt->t_size, y * dt->t_size);
+	else if (dt->map[y][x] == 'P')
+		mlx_put_image_to_window(
+			dt->mlx, dt->win, dt->img_p,
+			x * dt->t_size, y * dt->t_size);
+	else if (dt->map[y][x] == 'C')
+		mlx_put_image_to_window(
+			dt->mlx, dt->win, dt->img_c,
+			x * dt->t_size, y * dt->t_size);
+	else if (dt->map[y][x] == 'E')
+		mlx_put_image_to_window(
+			dt->mlx, dt->win, dt->img_e,
+			x * dt->t_size, y * dt->t_size);
 }
 
 void	render_map(t_so_long *dt)
 {
 	int		y;
 	int		x;
-	char	tile;
 
 	y = 0;
 	while (dt->map[y])
@@ -31,22 +47,15 @@ void	render_map(t_so_long *dt)
 		x = 0;
 		while (dt->map[y][x])
 		{
-			tile = dt->map[y][x];
-			if (tile == '1')
-				put_image(dt, dt->img_1, x, y);
-			else if (tile == '0')
-				put_image(dt, dt->img_0, x, y);
-			else if (tile == 'P')
-				put_image(dt, dt->img_p, x, y);
-			else if (tile == 'C')
-				put_image(dt, dt->img_c, x, y);
-			else if (tile == 'E')
-				put_image(dt, dt->img_e, x, y);
+			put_image(dt, x, y);
+			if (dt->player_x == x && dt->player_y == y)
+				mlx_put_image_to_window(
+					dt->mlx, dt->win, dt->img_p,
+					x * dt->t_size, y * dt->t_size);
 			x++;
 		}
 		y++;
 	}
-	printf("%p\n", dt->img_0);
 }
 
 void	load_images(t_so_long *dt)

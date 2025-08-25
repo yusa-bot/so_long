@@ -6,7 +6,7 @@
 /*   By: ayusa <ayusa@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 14:00:45 by ayusa             #+#    #+#             */
-/*   Updated: 2025/08/25 23:19:10 by ayusa            ###   ########.fr       */
+/*   Updated: 2025/08/26 02:47:08 by ayusa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ void	count_collectibles(t_so_long *dt)
 		}
 		y++;
 	}
+	if (dt->collect_count == 0)
+		error_exit(dt, "There is no collectible in the map");
 }
 
 void	so_long(t_so_long *dt)
@@ -38,7 +40,7 @@ void	so_long(t_so_long *dt)
 	dt->move_count = 0;
 	dt->t_size = 50;
 	display_map(dt);
-	mlx_hook(dt->win, 2, 1L << 0, handle_key, dt);//keyboard
-	mlx_hook(dt->win, 17, 0, handle_exit, dt);//x
+	mlx_hook(dt->win, 2, 1L << 0, handle_key, dt);
+	mlx_hook(dt->win, 17, 0, handle_exit, dt);
 	mlx_loop(dt->mlx);
 }

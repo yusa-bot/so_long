@@ -6,7 +6,7 @@
 /*   By: ayusa <ayusa@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 21:28:38 by ayusa             #+#    #+#             */
-/*   Updated: 2025/08/05 21:40:22 by ayusa            ###   ########.fr       */
+/*   Updated: 2025/08/26 01:20:48 by ayusa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,9 @@ static void	count_p_and_e(t_so_long *dt, int *p, int *e)
 			}
 			else if (dt->map[i][j] == 'E')
 				(*e)++;
+			else if (dt->map[i][j] != '0' && dt->map[i][j] != '1'
+				&& dt->map[i][j] != 'C')
+				error_exit(dt, "Invalid character in map");
 			j++;
 		}
 		i++;
