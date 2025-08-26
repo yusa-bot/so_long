@@ -6,7 +6,7 @@
 /*   By: ayusa <ayusa@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 21:10:36 by ayusa             #+#    #+#             */
-/*   Updated: 2025/08/26 02:49:49 by ayusa            ###   ########.fr       */
+/*   Updated: 2025/08/26 20:56:57 by ayusa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,23 +61,23 @@ void	render_map(t_so_long *dt)
 void	load_images(t_so_long *dt)
 {
 	dt->img_1 = mlx_xpm_file_to_image(
-			dt->mlx, "assets/1.xpm", &dt->t_size, &dt->t_size);
+			dt->mlx, "textures/1.xpm", &dt->t_size, &dt->t_size);
 	if (!dt->img_1)
 		error_exit(dt, "Failed to load 1.xpm");
 	dt->img_0 = mlx_xpm_file_to_image(
-			dt->mlx, "assets/0.xpm", &dt->t_size, &dt->t_size);
+			dt->mlx, "textures/0.xpm", &dt->t_size, &dt->t_size);
 	if (!dt->img_0)
 		error_exit(dt, "Failed to load 0.xpm");
 	dt->img_p = mlx_xpm_file_to_image(
-			dt->mlx, "assets/p.xpm", &dt->t_size, &dt->t_size);
+			dt->mlx, "textures/p.xpm", &dt->t_size, &dt->t_size);
 	if (!dt->img_p)
 		error_exit(dt, "Failed to load p.xpm");
 	dt->img_c = mlx_xpm_file_to_image(
-			dt->mlx, "assets/c.xpm", &dt->t_size, &dt->t_size);
+			dt->mlx, "textures/c.xpm", &dt->t_size, &dt->t_size);
 	if (!dt->img_c)
 		error_exit(dt, "Failed to load c.xpm");
 	dt->img_e = mlx_xpm_file_to_image(
-			dt->mlx, "assets/e.xpm", &dt->t_size, &dt->t_size);
+			dt->mlx, "textures/e.xpm", &dt->t_size, &dt->t_size);
 	if (!dt->img_e)
 		error_exit(dt, "Failed to load e.xpm");
 	render_map(dt);
@@ -92,7 +92,7 @@ void	display_map(t_so_long *dt)
 		error_exit(dt, "Failed to initialize MLX");
 	dt->win = mlx_new_window(
 			dt->mlx, dt->map_i_w * dt->t_size,
-			dt->map_i_h * dt->t_size, "<game title>");
+			dt->map_i_h * dt->t_size, "Go to eat");
 	if (!dt->win)
 		error_exit(dt, "Failed to create window");
 	load_images(dt);

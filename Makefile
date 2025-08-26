@@ -6,7 +6,7 @@
 #    By: ayusa <ayusa@student.42tokyo.jp>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/09 20:45:22 by ayusa             #+#    #+#              #
-#    Updated: 2025/08/25 21:52:50 by ayusa            ###   ########.fr        #
+#    Updated: 2025/08/26 20:38:37 by ayusa            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,13 +20,12 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror
 RM = rm -f
 
-# Allow overriding MLX_DIR from the environment, but default to the bundled dir
-MLX_DIR ?= ./minilibx-linux
-MLX_INC = $(MLX_DIR)
+MLX_DIR = $(HOME)/.local/opt/minilibx-linux
+INCS    = -I$(MLX_DIR)
+LIBS    = -L$(MLX_DIR) -lmlx -lXext -lX11 -lm
 
-# compile .c -> .o
 %.o: %.c
-	$(CC) $(CFLAGS) -I$(MLX_INC) -c $< -o $@
+	$(CC) $(CFLAGS) $(INCS) -c $< -o $@
 
 LIBFT_DIR = libft
 FT_PRINTF_DIR = ft_printf
@@ -35,8 +34,6 @@ GET_NEXT_LINE_DIR = get_next_line
 LIBFT = $(LIBFT_DIR)/libft.a
 FT_PRINTF = $(FT_PRINTF_DIR)/ft_printf.a
 GET_NEXT_LINE = $(GET_NEXT_LINE_DIR)/get_next_line.a
-LIBS = -L$(MLX_DIR) -lmlx -lXext -lX11 -lm
-
 
 all: $(NAME)
 

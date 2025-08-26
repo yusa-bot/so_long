@@ -6,7 +6,7 @@
 /*   By: ayusa <ayusa@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 20:45:19 by ayusa             #+#    #+#             */
-/*   Updated: 2025/08/26 02:54:22 by ayusa            ###   ########.fr       */
+/*   Updated: 2025/08/26 20:35:24 by ayusa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include <sys/types.h>
 # include <sys/stat.h>
 
-# include "mlx.h"
+# include <mlx.h>
 # include "./libft/libft.h"
 # include "./ft_printf/ft_printf.h"
 # include "./get_next_line/get_next_line.h"
