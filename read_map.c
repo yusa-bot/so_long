@@ -6,7 +6,7 @@
 /*   By: ayusa <ayusa@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 18:55:35 by ayusa             #+#    #+#             */
-/*   Updated: 2025/09/22 19:38:40 by ayusa            ###   ########.fr       */
+/*   Updated: 2025/09/25 18:56:00 by ayusa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	line_to_map(t_so_long *dt, char *line, size_t i)
 
 	len = ft_strlen(line);
 	if (len > 0 && line[len - 1] == '\n')
-    	len--;
+		len--;
 	dt->map[i] = malloc(len + 1);
 	if (!dt->map[i])
 	{
@@ -92,7 +92,6 @@ void	count_map_lines(t_so_long *dt)
 		error_exit(dt, "map height is too large under display size 41");
 	dt->map_h = count;
 }
-
 
 void	read_map(t_so_long *dt)
 {
