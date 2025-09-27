@@ -6,7 +6,7 @@
 /*   By: ayusa <ayusa@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 20:45:21 by ayusa             #+#    #+#             */
-/*   Updated: 2025/09/09 15:07:12 by ayusa            ###   ########.fr       */
+/*   Updated: 2025/09/27 11:34:43 by ayusa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	init_dt(t_so_long *dt)
 	dt->player_y = 0;
 	dt->collect_count = 0;
 	dt->move_count = 0;
+	dt->last_str = NULL;
 }
 
 int	main(int ac, char **av)

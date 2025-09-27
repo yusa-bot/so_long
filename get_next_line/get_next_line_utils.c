@@ -6,7 +6,7 @@
 /*   By: ayusa <ayusa@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 13:11:56 by ayusa             #+#    #+#             */
-/*   Updated: 2025/07/11 21:09:18 by ayusa            ###   ########.fr       */
+/*   Updated: 2025/09/26 22:50:39 by ayusa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	*to_new_last_str(char *last_str, char *buf)
 			return (NULL);
 		last_str[0] = '\0';
 	}
-	ptr = malloc(sizeof(char) * (ft_strlen(last_str) + ft_strlen(buf) + 1));
+	ptr = malloc(sizeof(char) * (ft_strlen(last_str) + ft_strlen(buf) + 1));//
 	if (ptr == NULL)
 		return (free(last_str), NULL);
 	i = -1;

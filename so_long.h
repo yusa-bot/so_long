@@ -6,7 +6,7 @@
 /*   By: ayusa <ayusa@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 20:45:19 by ayusa             #+#    #+#             */
-/*   Updated: 2025/09/22 18:54:01 by ayusa            ###   ########.fr       */
+/*   Updated: 2025/09/27 11:34:52 by ayusa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ typedef struct s_so_long
 	int		player_y;
 	int		collect_count;
 	int		move_count;
+	char	*last_str;
 }	t_so_long;
 
 void	error_exit(t_so_long *dt, char *msg);

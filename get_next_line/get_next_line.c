@@ -6,7 +6,7 @@
 /*   By: ayusa <ayusa@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 13:12:03 by ayusa             #+#    #+#             */
-/*   Updated: 2025/08/05 22:21:11 by ayusa            ###   ########.fr       */
+/*   Updated: 2025/09/27 12:28:54 by ayusa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ char	*new_last_str(char *last_str)
 		i++;
 	if (!last_str[i])
 		return (free(last_str), NULL);
-	str = (char *)malloc(sizeof(char) * (ft_strlen(last_str) - i + 1));
+	str = (char *)malloc(sizeof(char) * (ft_strlen(last_str) - i + 1));//
 	if (!str)
 		return (free(last_str), NULL);
 	i++;
@@ -97,20 +97,19 @@ char	*read_until_nl_in_buf(int fd, char *last_str)
 	return (last_str);
 }
 
-char	*get_next_line(int fd)
+char	*get_next_line(int fd, char **last_str)
 {
 	char		*line;
-	static char	*last_str;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (fd < 0 || BUFFER_SIZE <= 0 || !last_str)
 		return (NULL);
-	last_str = read_until_nl_in_buf(fd, last_str);
-	if (!last_str)
+	*last_str = read_until_nl_in_buf(fd, *last_str);
+	if (!*last_str)
 		return (NULL);
-	line = get_nl_line(last_str);
+	line = get_nl_line(*last_str);
 	if (!line)
-		return (free(last_str), NULL);
-	last_str = new_last_str(last_str);
+		return (free(*last_str), NULL);
+	*last_str = new_last_str(*last_str);
 	return (line);
 }
 

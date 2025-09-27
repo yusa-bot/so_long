@@ -6,7 +6,7 @@
 #    By: ayusa <ayusa@student.42tokyo.jp>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/09 20:45:22 by ayusa             #+#    #+#              #
-#    Updated: 2025/09/22 18:43:26 by ayusa            ###   ########.fr        #
+#    Updated: 2025/09/27 12:28:25 by ayusa            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,13 +15,14 @@ NAME = so_long
 SRCS = main.c so_long_util.c check_path.c so_long.c display_map.c operation.c \
 		read_map.c valid_map.c
 OBJS = $(SRCS:.c=.o)
+DEPS = $(OBJS:.o=.d)
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -MMD -MP
 RM = rm -f
 
 MLX_DIR = $(HOME)/.local/opt/minilibx-linux
-INCS    = -I$(MLX_DIR)
+INCS    = -I$(MLX_DIR) -I$(GET_NEXT_LINE_DIR) -I$(FT_PRINTF_DIR) -I$(LIBFT_DIR)
 LIBS    = -L$(MLX_DIR) -lmlx -lXext -lX11 -lm
 INC     = so_long.h
 

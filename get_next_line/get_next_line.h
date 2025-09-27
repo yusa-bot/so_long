@@ -6,7 +6,7 @@
 /*   By: ayusa <ayusa@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 17:59:46 by ayusa             #+#    #+#             */
-/*   Updated: 2025/07/11 22:19:07 by ayusa            ###   ########.fr       */
+/*   Updated: 2025/09/27 11:31:27 by ayusa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 
 # define BUFFER_SIZE 1024
 
-char	*get_next_line(int fd);
+char	*get_next_line(int fd, char **last_str);
 char	*to_new_last_str(char *last_str, char *buf);
 
 #endif

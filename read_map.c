@@ -6,7 +6,7 @@
 /*   By: ayusa <ayusa@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 18:55:35 by ayusa             #+#    #+#             */
-/*   Updated: 2025/09/25 18:56:00 by ayusa            ###   ########.fr       */
+/*   Updated: 2025/09/27 11:45:48 by ayusa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void	line_to_map(t_so_long *dt, char *line, size_t i)
 		error_exit(dt, "can't malloc map line");
 	}
 	dt->map[i][dt->map_w] = '\0';
-	j = 0;
+		j = 0;
 	while (line[j] != '\0')
 	{
 		dt->map[i][j] = line[j];
@@ -36,12 +36,19 @@ static void	line_to_map(t_so_long *dt, char *line, size_t i)
 	dt->map[i][j] = '\0';
 }
 
-static void	decide_map_w(t_so_long *dt, size_t line_len)
+static void	research_map_w(t_so_long *dt, size_t line_len, char *line)
 {
 	if (line_len > dt->map_w)
 	{
 		if (line_len > DISPLAY_MAP_SIZE_X)
-			error_exit(dt, "map width is too large under display size 76");
+		{
+			close(dt->fd);//
+			free(dt->map);//
+			dt->map = NULL;//
+			free(line);//
+			free(dt->last_str);//
+			exit(1);//
+		}
 		dt->map_w = line_len;
 	}
 }
@@ -58,18 +65,19 @@ static void	read_file_all(t_so_long *dt)
 	i = 0;
 	while (1)
 	{
-		line = get_next_line(dt->fd);
+		line = get_next_line(dt->fd, &dt->last_str);
 		if (!line)
 			break ;
 		len = ft_strlen(line);
 		if (len > 0 && line[len - 1] == '\n')
 			len--;
-		decide_map_w(dt, len);
+		research_map_w(dt, len, line);
 		line_to_map(dt, line, i);
 		free(line);
 		i++;
 	}
 	dt->map[i] = NULL;
+	free(dt->last_str);
 }
 
 void	count_map_lines(t_so_long *dt)
@@ -80,7 +88,7 @@ void	count_map_lines(t_so_long *dt)
 	count = 0;
 	while (1)
 	{
-		line = get_next_line(dt->fd);
+		line = get_next_line(dt->fd, &dt->last_str);
 		if (!line)
 			break ;
 		free(line);
@@ -91,6 +99,7 @@ void	count_map_lines(t_so_long *dt)
 	if (count > DISPLAY_MAP_SIZE_Y)
 		error_exit(dt, "map height is too large under display size 41");
 	dt->map_h = count;
+	free(dt->last_str);
 }
 
 void	read_map(t_so_long *dt)

@@ -6,7 +6,7 @@
 /*   By: ayusa <ayusa@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 18:56:09 by ayusa             #+#    #+#             */
-/*   Updated: 2025/09/12 15:06:59 by ayusa            ###   ########.fr       */
+/*   Updated: 2025/09/27 11:36:56 by ayusa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,11 @@ void	free_handle(t_so_long *dt)
 		free_map(dt->map);
 		dt->map = NULL;
 	}
+	if (dt->last_str)
+	{
+		free(dt->last_str);
+		dt->last_str = NULL;
+	}
 }
 
 void	error_exit(t_so_long *dt, char *msg)
@@ -71,7 +76,17 @@ void	error_exit(t_so_long *dt, char *msg)
 	if (dt->img_0)
 		free_images(dt);
 	if (dt->mlx && dt->win)
+	{
+		mlx_clear_window(dt->mlx, dt->win);
 		mlx_destroy_window(dt->mlx, dt->win);
+		dt->win = NULL;
+	}
+	if (dt->mlx)
+	{
+		mlx_destroy_display(dt->mlx);
+		free(dt->mlx);
+		dt->mlx = NULL;
+	}
 	if (dt->fd >= 0)
 		close(dt->fd);
 	if (dt->map)
@@ -79,11 +94,10 @@ void	error_exit(t_so_long *dt, char *msg)
 		free_map(dt->map);
 		dt->map = NULL;
 	}
-	if (dt->mlx)
+	if (dt->last_str)
 	{
-		mlx_destroy_display(dt->mlx);
-		free(dt->mlx);
-		dt->mlx = NULL;
+		free(dt->last_str);
+		dt->last_str = NULL;
 	}
 	len = ft_strlen(msg);
 	write(2, "Error\n", 6);
